@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voltify | Empowering Your Tech Lifestyle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #00f2ff; --bg: #080a0f; --card: #12161d; --text: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+        /* Navigation */
+        nav { background: rgba(18, 22, 29, 0.95); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 24px; color: var(--primary); text-decoration: none; font-weight: bold; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 15px; font-weight: 600; cursor: pointer; }
+
+        /* Hero Section */
+        header { text-align: center; padding: 60px 20px; background: radial-gradient(circle at center, #161b22 0%, #080a0f 100%); }
+        .hero-title { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; color: var(--primary); margin-bottom: 5px; }
+        .hero-slogan { font-size: 1.1rem; letter-spacing: 3px; color: #aaa; margin-bottom: 15px; text-transform: uppercase; }
+        .hero-tagline { background: var(--primary); color: #000; display: inline-block; padding: 5px 20px; border-radius: 50px; font-weight: bold; font-size: 0.9rem; }
+
+        /* Sections */
+        section { display: none; padding: 50px 5%; min-height: 80vh; }
+        section.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Product Grid */
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .product-card { background: var(--card); border-radius: 15px; padding: 20px; border: 1px solid #222; text-align: center; transition: 0.3s; }
+        .product-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .img-box { height: 180px; background: #1d232c; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #444; }
+        .price { font-size: 1.4rem; font-weight: bold; color: var(--primary); }
+        .btn-main { background: var(--primary); color: #000; padding: 12px; border-radius: 5px; font-weight: bold; cursor: pointer; border: none; width: 100%; margin-top: 15px; display: block; text-decoration: none; }
+        .view-btn { color: var(--primary); cursor: pointer; text-decoration: underline; font-size: 14px; margin-top: 10px; display: block; }
+
+        /* Modal (Details Popup) */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; padding: 20px; }
+        .modal-content { background: var(--card); max-width: 500px; margin: 50px auto; padding: 30px; border-radius: 15px; border: 1px solid var(--primary); position: relative; }
+        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 30px; color: var(--primary); cursor: pointer; }
+        .details-list { text-align: left; margin: 20px 0; color: #ccc; }
+        .details-list li { margin-bottom: 8px; list-style: circle; margin-left: 20px; }
+
+        /* Form */
+        .form-container { max-width: 600px; margin: 0 auto; background: var(--card); padding: 30px; border-radius: 15px; border: 1px solid #333; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; color: var(--primary); }
+        input, textarea { width: 100%; padding: 12px; background: #080a0f; border: 1px solid #333; color: white; border-radius: 5px; margin-top: 5px; }
+        .selected-box { background: rgba(0, 242, 255, 0.1); padding: 15px; border-radius: 10px; border: 1px dashed var(--primary); margin-bottom: 20px; color: var(--primary); font-weight: bold; text-align: center; }
+        #payment-box { margin-top: 15px; padding: 15px; border-radius: 8px; display: none; background: rgba(255,255,255,0.05); border-left: 4px solid var(--primary); }
+
+        footer { text-align: center; padding: 40px; color: #555; border-top: 1px solid #222; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="logo" onclick="showPage('home')">VOLTIFY</a>
+    <div class="nav-links">
+        <a onclick="showPage('home')">হোম</a>
+        <a onclick="showPage('shop')">শপ</a>
+    </div>
+</nav>
+
+<!-- Home Section -->
+<section id="home" class="active">
+    <header>
+        <h1 class="hero-title">VOLTIFY</h1>
+        <p class="hero-slogan">Empowering Your Tech Lifestyle</p>
+        <p class="hero-tagline">ভবিষ্যতের গ্যাজেট, এখন আপনার হাতের মুঠোয়!</p>
+    </header>
+
+    <center><h2 class="section-title" style="margin-top: 50px;">সেরা অফারসমূহ 🔥</h2></center>
+    <div class="grid">
+        <div class="product-card">
+            <div class="img-box">SMARTWATCH S9</div>
+            <h3>Ultra S9 Smartwatch</h3>
+            <p class="price">৳২,৮০০</p>
+            <span class="view-btn" onclick="openDetails('Ultra S9 Smartwatch', '৳২,৮০০', ['১.৫২ ইঞ্চি ফুল টাচ ডিসপ্লে', 'ব্লুটুথ কলিং সিস্টেম', 'হার্ট রেট ও স্লিপ মনিটর', '৭ দিনের ব্যাটারি ব্যাকআপ'])">বিস্তারিত দেখুন</span>
+            <button class="btn-main" onclick="openOrder('Ultra S9 Smartwatch', '৳২,৮০০')">অর্ডার করুন</button>
+        </div>
+        <div class="product-card">
+            <div class="img-box">POWERBANK</div>
+            <h3>20k mAh Fast Powerbank</h3>
+            <p class="price">৳১,৮৭০</p>
+            <span class="view-btn" onclick="openDetails('20k mAh Fast Powerbank', '৳১,৮৭০', ['২০,০০০ mAh লিথিয়াম ব্যাটারি', '২২.৫ ওয়াট ফাস্ট চার্জিং', 'একসাথে ৩টি ডিভাইস চার্জ হবে', 'ডিজিটাল ডিসপ্লে ইন্ডিকেটর'])">বিস্তারিত দেখুন</span>
+            <button class="btn-main" onclick="openOrder('20k mAh Fast Powerbank', '৳১,৮৭০')">অর্ডার করুন</button>
+        </div>
+    </div>
+
+    <!-- Home Page Shop Button -->
+    <div style="text-align: center; margin-top: 50px;">
+        <button class="btn-main" style="width: auto; padding: 15px 60px; font-size: 1.2rem;" onclick="showPage('shop')">পুরো শপ ভিজিট করুন 🛍️</button>
+    </div>
+</section>
+<!-- Shop Section -->
+<section id="shop">
+    <center><h2 class="section-title">সব গ্যাজেট কালেকশন</h2></center>
+    <div class="grid">
+        <div class="product-card">
+            <div class="img-box">CHARGER</div>
+            <h3>Wireless Charger</h3>
+            <p class="price">৳১,৩৫০</p>
+            <span class="view-btn" onclick="openDetails('Wireless Charger', '৳১,৩৫০', ['১৫ ওয়াট ওয়্যারলেস চার্জিং', 'সব স্মার্টফোনে কাজ করবে', 'স্লিম এবং পোর্টেবল ডিজাইন'])">বিস্তারিত দেখুন</span>
+            <button class="btn-main" onclick="openOrder('Wireless Charger', '৳১,৩৫০')">অর্ডার করুন</button>
+        </div>
+        <div class="product-card">
+            <div class="img-box">MOUSE</div>
+            <h3>RGB Gaming Mouse</h3>
+            <p class="price">৳৯৫০</p>
+            <span class="view-btn" onclick="openDetails('RGB Gaming Mouse', '৳৯৫০', ['৭টি কাস্টমাইজ কালার RGB', 'হাই-স্পিড গেমিং সেন্সর', '৬টি ডাইনামিক বাটন'])">বিস্তারিত দেখুন</span>
+            <button class="btn-main" onclick="openOrder('RGB Gaming Mouse', '৳৯৫০')">অর্ডার করুন</button>
+        </div>
+        <div class="product-card">
+            <div class="img-box">MOUSE</div>
+            <h3>RGB Gaming Mouse</h3>
+            <p class="price">৳৯৫০</p>
+            <span class="view-btn" onclick="openDetails('RGB Gaming Mouse', '৳৯৫০', ['৭টি কাস্টমাইজ কালার RGB', 'হাই-স্পিড গেমিং সেন্সর', '৬টি ডাইনামিক বাটন'])">বিস্তারিত দেখুন</span>
+            <button class="btn-main" onclick="openOrder('RGB Gaming Mouse', '৳৯৫০')">অর্ডার করুন</button>
+        </div>
+    </div>
+</section>
+
+<!-- Checkout Section -->
+<section id="checkout">
+    <div id="checkout-content" class="form-container">
+        <h2 style="text-align: center; color: var(--primary); margin-bottom: 20px;">অর্ডার কনফার্ম করুন</h2>
+        <div class="selected-box" id="pInfo">প্রোডাক্ট: লোড হচ্ছে...</div>
+        <form id="orderForm">
+            <div class="form-group"><label>নাম:</label><input type="text" id="name" placeholder="নাম লিখুন" required></div>
+            <div class="form-group"><label>মোবাইল নম্বর:</label><input type="tel" id="phone" placeholder="০১৬XXXXXXXX" required></div>
+            <div class="form-group">
+                <label>বিস্তারিত ঠিকানা:</label>
+                <textarea id="addr" rows="2" placeholder="বাসা নং, রোড বা গ্রামের নাম..." required></textarea>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 5px;">
+                    <input type="text" id="thana" placeholder="থানা" required>
+                    <input type="text" id="dist" placeholder="জেলা" required>
+                    <input type="text" id="divi" placeholder="বিভাগ" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>পেমেন্ট পদ্ধতি:</label>
+                <div style="display: flex; gap: 10px;">
+                    <label><input type="radio" name="pm" value="bKash" onclick="upPay()"> বিকাশ</label>
+                    <label><input type="radio" name="pm" value="Rocket" onclick="upPay()"> রকেট</label>
+                    <label><input type="radio" name="pm" value="COD" checked onclick="upPay()"> ক্যাশ অন ডেলিভারি</label>
+                </div>
+            </div>
+            <div id="payment-box"><p id="payMsg"></p><input type="text" id="trx" placeholder="Transaction ID লিখুন"></div>
+            <button type="button" class="btn-main" onclick="sendOrder()">অর্ডার সম্পন্ন করুন</button>
+        </form>
+    </div>
+</section>
+
+<!-- Product Details Modal -->
+<div id="pModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeDetails()">&times;</span>
+        <h2 id="mTitle" style="color:var(--primary)"></h2>
+        <div id="mDetails" class="details-list"></div>
+        <button class="btn-main" id="mOrderBtn">অর্ডার করুন</button>
+    </div>
+</div>
+
+<footer>&copy; 2026 Voltify | Designed by Abdul Mazed.digital</footer>
+
+<script>
+    let currentP = ""; let currentPrice = "";
+
+    function showPage(id) {
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    function openDetails(name, price, features) {
+        document.getElementById('mTitle').innerText = name;
+        let list = "<ul>"; features.forEach(f => list += `<li>${f}</li>`); list += "</ul>";
+        document.getElementById('mDetails').innerHTML = list;
+        document.getElementById('mOrderBtn').onclick = () => { closeDetails(); openOrder(name, price); };
+        document.getElementById('pModal').style.display = "block";
+    }
+
+    function closeDetails() { document.getElementById('pModal').style.display = "none"; }
+
+    function openOrder(n, p) {
+        currentP = n; currentPrice = p;
+        document.getElementById('pInfo').innerHTML = `📦 ${n} <br> 💰 ${p}`;
+        showPage('checkout');
+    }
+
+    function upPay() {
+        const m = document.querySelector('input[name="pm"]:checked').value;
+        const b = document.getElementById('payment-box');
+        if(m !== "COD") {
+            b.style.display = "block";
+            document.getElementById('payMsg').innerHTML = `${m} (পার্সোনাল): <b>01638137258</b><br><small>টাকা পাঠিয়ে TrxID দিন।</small>`;
+        } else b.style.display = "none";
+    }
+
+    function sendOrder() {
+        const n = document.getElementById('name').value;
+        const p = document.getElementById('phone').value;
+        const a = document.getElementById('addr').value;
+        const t = document.getElementById('thana').value;
+        const d = document.getElementById('dist').value;
+        const v = document.getElementById('divi').value;
+        const m = document.querySelector('input[name="pm"]:checked').value;
+        const trx = document.getElementById('trx').value || "N/A";
+
+        if(!n || !p || !a) { alert("সব তথ্য দিন"); return; }
+
+        const msg = `*নতুন অর্ডার*%0A📦 প্রো: ${currentP}%0A💰 মূল্য: ${currentPrice}%0A👤 নাম: ${n}%0A📞 ফোন: ${p}%0A🏠 ঠিকানা: ${a}, ${t}, ${d}, ${v}%0A💳 পেমেন্ট: ${m}%0A🆔 TrxID: ${trx}`;
+        window.open(`https://wa.me/8801638137258?text=${msg}`, '_blank');
+        
+        document.getElementById('checkout-content').innerHTML = `<div style="text-align:center; padding:40px;"><h2>ধন্যবাদ, ${n}!</h2><p>অর্ডারটি সফল হয়েছে।</p><button class="btn-main" onclick="location.reload()">আবার শপিং করুন</button></div>`;
+    }
+
+    window.onclick = (e) => { if(e.target == document.getElementById('pModal')) closeDetails(); }
+</script>
+
+</body>
+</html>
